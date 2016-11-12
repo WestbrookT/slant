@@ -1,5 +1,10 @@
 <html>
 <body>
-Hello!!!
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <form action="/q" method="get">
+  <input type="text" class="form-control" name="query">
+  <input type="submit" class="btn btn-success form-control"  value="Search">
+  </form>
 </body>
 </html>
