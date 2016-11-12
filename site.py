@@ -4,6 +4,8 @@ import os, datetime, json, re
 
 app = Flask(__name__)
 
+import dinter
+
 @app.route('/')
 def hello_world():
 
@@ -12,9 +14,11 @@ def hello_world():
 @app.route('/q')
 def getQuery():
     query = request.args.get('query','')
-    #content = template.getPage(name)
-    #return render_template('post.html', post=content['content'], f=globals(), conv=getPython)
-    return query
+    data = search(query)
+    if(request.args.get('json') != None):
+        return jsonify(data)
+    else:
+        return query
 
 @app.route('/amalgam')
 def getAmalgram():
