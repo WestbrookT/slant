@@ -23,7 +23,7 @@ class Page(Base):
 		keywords = ''
 
 		for i in nlp.keywords(content):
-			keywords += i
+			keywords += i.lower() + ' '
 
 		self.content = content
 		self.keywords = keywords
