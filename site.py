@@ -9,7 +9,7 @@ def hello_world():
 
     return redirect("index.html")
 
-@app.route('/q>')
+@app.route('/q')
 def getQuery(name):
     query = request.args.get('query','')
     #content = template.getPage(name)
