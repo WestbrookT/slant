@@ -4,12 +4,10 @@ import os, datetime, json, re
 
 app = Flask(__name__)
 
-import template
-
 @app.route('/')
 def hello_world():
 
-    return render_template('landing.html', f=globals(), conv=getPython)
+    return redirect("index.html")
 
 @app.route('/q>')
 def getQuery(name):
