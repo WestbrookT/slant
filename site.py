@@ -32,7 +32,7 @@ def getQuery(name):
 
 @app.route('/amalgam')
 def getAmalgram(name):
-    query = request.args.get('query,'')
+    query = request.args.get('query','')
     #content = template.getPage(name)
     #return render_template('post.html', post=content['content'], f=globals(), conv=getPython)
     return query
