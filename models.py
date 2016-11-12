@@ -25,6 +25,16 @@ class Page(Base):
 		for i in nlp.keywords(content):
 			keywords += i.lower() + ' '
 
-		self.content = content
+		self.content = content.lower()
 		self.keywords = keywords
 		self.link = link
+
+	def __init__(self, link, text):
+		self.content = text.lower()
+
+		keywords = ''
+
+		for i in nlp.keywords(text):
+			keywords += i.lower() + ' '
+		self.link = link
+		self.keywords = keywords
