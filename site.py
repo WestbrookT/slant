@@ -10,18 +10,18 @@ def hello_world():
     return redirect("index.html")
 
 @app.route('/q')
-def getQuery(name):
+def getQuery():
     query = request.args.get('query','')
     #content = template.getPage(name)
     #return render_template('post.html', post=content['content'], f=globals(), conv=getPython)
     return query
 
 @app.route('/amalgam')
-def getAmalgram(name):
+def getAmalgram():
     query = request.args.get('query','')
     #content = template.getPage(name)
     #return render_template('post.html', post=content['content'], f=globals(), conv=getPython)
     return query
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
