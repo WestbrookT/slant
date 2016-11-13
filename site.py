@@ -4,7 +4,16 @@ import os, datetime, json, re
 
 app = Flask(__name__)
 
-#import dinter
+import dinter
+
+def getDomain(url):
+    pat = r'((https?):\/\/)?(\w+\.)*(?P<domain>\w+)\.(\w+)(\/.*)?'
+    m = re.match(pat, url)
+    if m:
+        domain = m.group('domain')
+        return domain
+    else:
+        return False
 
 #This function converts a float from range 0 to 1 to a hex code ranging from red to grey to blue.
 def indextohex(index):
@@ -25,7 +34,20 @@ def hello_world():
 @app.route('/q')
 def getQuery():
     query = request.args.get('query','')
-    return render_template('q.html',query = query, results=[{"color":indextohex(0.2),"title":"Donald Trump Eats The Best Poop","blurb":"Donald Trump eats only the best poop","link":"http://breitbart.com","source":"Breitbart","image":"http://i.imgur.com/q73B2jL.jpg"},{"color":indextohex(0.9),"title":"Donald Trump Eats The Worst Poop","blurb":"Donald Trump eats only the worst poop","link":"http://buzzfeed.com","source":"Buzzfeed","image":"http://i.imgur.com/gPceg2V.jpg"},{"color":indextohex(0.55),"title":"The Case For Eating Poop Like Trump","blurb":"Donald Trump has a good reason to eat poop and so do you","link":"http://breitbart.com","source":"The Atlantic","image":"http://i.imgur.com/q73B2jL.jpg"},{"color":indextohex(0.75),"title":"Eating poop does not represent America","blurb":"We must not allow the practice of eating poop to be acceptable in the nation","link":"http://buzzfeed.com","source":"Everyday Feminism","image":"http://i.imgur.com/gPceg2V.jpg"},{"color":indextohex(0.50),"title":"The history of eating poop in America","blurb":"This nation has had a long history with people who secretly eat poop","link":"http://buzzfeed.com","source":"Washington Post","image":"http://i.imgur.com/gPceg2V.jpg"}])
+    print("Hiiiii I'm doing a search lol")
+    search_results = dinter.query(0,int(dinter.count()/10),query)
+    print(search_results)
+    for result in search_results:
+        #print(search_results[result]["lean"])
+
+
+        search_results[result]["color"]=indextohex(search_results[result]["lean"])
+        search_results[result]["text"]=search_results[result]["text"].replace("sign up for our newsletter ","")
+        search_results[result]["blurb"]=search_results[result]["text"][:300]
+        search_results[result]["title"]=search_results[result]["text"][:55]
+        search_results[result]["source"]=getDomain(result);
+        #print(search_results[result]["blurb"])
+    return render_template('q.html',query = query, results=search_results)
 
 @app.route('/amalgam')
 def getAmalgram():
