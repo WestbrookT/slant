@@ -1,5 +1,5 @@
 from math import sqrt
-from json import dumps
+from json import dumps, load
 
 
 def _edit_dist_init(len1, len2):
@@ -98,4 +98,9 @@ def score(text, keywords, query):
 
 	return dumps(temp)
 
+if __name__ == '__main__':
 
+	f = open('tmp/query.json')
+	data = load(f)
+	f.close()
+	print(score(data['text'], data['keywords'], data['query']))
