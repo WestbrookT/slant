@@ -47,7 +47,7 @@ def getQuery():
         result["text"]=result["text"].replace("sign up for our newsletter","")
         result["blurb"]=result["text"][:300]
         result["title"]=result["text"][:55]
-        (result["source"])=getDomain(result["link"])
+        (result["source"])=getDomain(result["link"])+" "+result["rel"]
         if(result["rel"]<0.0):
             results_remove.append(result)
         index += 1
