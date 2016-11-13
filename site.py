@@ -6,6 +6,15 @@ app = Flask(__name__)
 
 import dinter
 
+def getDomain(url):
+    pat = r'((https?):\/\/)?(\w+\.)*(?P<domain>\w+)\.(\w+)(\/.*)?'
+    m = re.match(pat, url)
+    if m:
+        domain = m.group('domain')
+        return domain
+    else:
+        return False
+
 #This function converts a float from range 0 to 1 to a hex code ranging from red to grey to blue.
 def indextohex(index):
     r = int(255 * (1-index))
@@ -27,16 +36,16 @@ def getQuery():
     query = request.args.get('query','')
     print("Hiiiii I'm doing a search lol")
     search_results = dinter.query(0,int(dinter.count()/10),query)
-    #print(search_results)
+    print(search_results)
     for result in search_results:
         #print(search_results[result]["lean"])
 
 
         search_results[result]["color"]=indextohex(search_results[result]["lean"])
-        
+
         search_results[result]["blurb"]=search_results[result]["text"][:300]
         search_results[result]["title"]=search_results[result]["text"][:55]
-        search_results[result]["source"]=result.match("/:\/\/(www[0-9]?\.)?(.[^/:]+)/i");
+        search_results[result]["source"]=getDomain(result);
         #print(search_results[result]["blurb"])
     return render_template('q.html',query = query, results=search_results)
 
