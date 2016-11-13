@@ -37,7 +37,7 @@ def getQuery():
     print("Hiiiii I'm doing a search lol")
     search_results = dinter.query(0,int(dinter.count()/10),query)
     #print(search_results)
-    results_remove[]
+    results_remove=[]
     for result in search_results:
         #print(search_results[result]["lean"])
 
