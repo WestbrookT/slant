@@ -4,9 +4,9 @@ def indextohex(index):
     if (g > 128):
         g = 255-g
     b = int(255 * index)
-    rhex = format(r,'x')
-    ghex = format(g,'x')
-    bhex = format(b,'x')
+    rhex = format(r,'02x')
+    ghex = format(g,'02x')
+    bhex = format(b,'02x')
     return(str(rhex)+str(ghex)+str(bhex))
 
 print(indextohex(0))
