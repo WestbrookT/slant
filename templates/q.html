@@ -1,16 +1,16 @@
 {%extends "layout.html"%}
 {% block content %}
         {% for n in results %}
-        <a href={{n["link"]}}>
+        <a href={{results[n]["link"]}}>
           <div class = "row">
-            <div class = "fill col-xs-12 article-box-big" style="background:url({{n["image"]}});background-size: cover;
+            <div class = "fill col-xs-12 article-box-big" style="background:url({{results[n]["image"]}});background-size: cover;
             background-position: center center;
             position: relative;box-shadow: 5px 5px 2px #888888;">
               <div class="article-caption-big">
-                <h2>({{n["source"]}}) {{n["title"]}}</h2>
-                {{n["blurb"][:155]}}
+                <h2>({{results[n]["source"]}}) {{results[n]["title"]}}</h2>
+                {{results[n]["blurb"][:155]}}
               </div>
-              <div class="article-tab-big" style="background-color: #{{n["color"]}};">
+              <div class="article-tab-big" style="background-color: #{{results[n]["color"]}};">
               </div>
             </div>
           </div>
@@ -18,14 +18,14 @@
         </br>
         {% endfor %}
           {% for n in results %}
-          <a href={{n["link"]}}>
+          <a href={{results[n]["link"]}}>
           <div class = "row">
-            <div class = "fill col-xs-12 article-box-small" style="background:url({{n["image"]}});">
+            <div class = "fill col-xs-12 article-box-small" style="background:url({{results[n]["image"]}});">
               <div class="article-caption-small">
-                <h3>({{n["source"]}}) {{n["title"]}}</h3>
-                {{n["blurb"][:155]}}
+                <h3>({{results[n]["source"]}}) {{results[n]["title"]}}</h3>
+                {{results[n]["blurb"][:155]}}
               </div>
-              <div class="article-tab-small" style="background-color: #{{n["color"]}};">
+              <div class="article-tab-small" style="background-color: #{{results[n]["color"]}};">
               </div>
             </div>
           </div>
