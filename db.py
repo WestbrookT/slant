@@ -19,10 +19,3 @@ Base.query = session.query_property()
 
 
 init_db()
-
-
-
-
-
-
-
