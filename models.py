@@ -66,20 +66,39 @@ class Page(Base):
 		self.img = img
 		vals = {'right': 0, 'left': 1, 'neutral': .5}
 
-		self.lean = vals[cls.classify(self.word_feats(self.content))]
+
+
+		self.lean = self.classify(text.lower())
 
 
 	def word_feats(self, words):
-		out = {}
+		out = []
 
 		bigram_finder = BigramCollocationFinder.from_words(words)
 		bigrams = bigram_finder.nbest(score_fn, n=10)
 
-		for word in itertools.chain(words, bigrams):
-			if word not in sw:
-				out[word] = True
+
+
+		for i, sentence in enumerate(words.split('.')):
+			out.append({})
+			for word in itertools.chain(sentence, bigrams):
+				if word not in sw:
+					out[i][word] = True
 		return out
 
+	def classify(self, words):
+
+		bag = self.word_feats(words)
+		out = 0
+		count = 0
+		vals = {'right': 0, 'left': 1, 'neutral': .5}
+		for sentence in bag:
+			count += 1
+			out += vals[cls.classify(sentence)]
+
+		if count == 0:
+			count = 1
+		return out/count
 
 
 # data = {'url':{'img':'string', 'article':'string'}}
