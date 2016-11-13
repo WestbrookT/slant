@@ -98,9 +98,13 @@ def score(text, keywords, query):
 
 	return dumps(temp)
 
+
+
+
 if __name__ == '__main__':
 
 	f = open('query.json')
 	data = load(f)
 	f.close()
+	print(data)
 	print(score(data['text'], data['keywords'], data['query']))

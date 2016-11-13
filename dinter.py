@@ -3,6 +3,8 @@ from db import session, init_db
 # from nltk.metrics import edit_distance
 from math import sqrt
 from sqlalchemy import and_
+from json import dump, load
+from os import system
 
 init_db()
 
@@ -173,3 +175,34 @@ def query(start, stop, string):
 		out[page.link] = {'rel': (out[page.link] / len(space)) + count, 'lean': page.lean, 'text':page.content, 'keywords':page.keywords}
 
 	return out
+
+
+def lambda_search(q):
+
+	fin = []
+	count = 0
+	for page in get_all():
+		if count == 20:
+			break
+		count += 1
+
+		inp = open('pl.json', 'w')
+		pl = {'text':page.content, 'keywords':page.keywords, 'query':q}
+		dump(pl, inp)
+		inp.close()
+
+
+
+		system('aws lambda invoke --invocation-type RequestResponse --function-name scoreus --region us-east-1 --payload file://pl.json --profile adminuser --output text out.txt')
+
+		out = open('out.txt', 'r')
+		data = load(out)
+		out.close()
+
+
+
+		print(data)
+
+		fin.append({'text':page.content, 'img':page.img, 'rel':float(data['body']), 'lean':page.lean, 'link':page.link})
+	return fin
+
