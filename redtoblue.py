@@ -1,5 +1,4 @@
 def indextohex(index):
-    index = 1
     r = int(255 * (1-index))
     g = int(255 * index)
     if (g > 128):
