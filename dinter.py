@@ -127,6 +127,7 @@ def search(query):
 		space = page.content.lower().split(' ')
 		count = 0
 		for word in words:
+			print(word)
 			out[page.link] += freq(word, space)
 
 			for token in page.keywords.split(' '):
