@@ -29,7 +29,7 @@ def getQuery():
     search_results = dinter.query(0,int(dinter.count()/10),query)
     #print(search_results)
     for result in search_results:
-        print([search_results][result]["lean"])
+        print(search_results[result]["lean"])
         #print (result["lean"])
         #result["color"]=indextohex(result["lean"])
         #result["source"]="your mom"
