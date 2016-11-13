@@ -78,25 +78,3 @@ html, body {
   height:120px;
   padding: 0px 0px 0px 0px;
 }
-
-.navbar-logo
-{
-
-  position: absolute;
-  top: -60px;
-  left: 28px;
-
-}
-
-.navbar-backing
-{
-  position: absolute;
-  top: 0px;
-}
-
-.navbar-search
-{
-  position: absolute;
-  top: -40px;
-  right: 15px;
-}

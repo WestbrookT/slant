@@ -1,0 +1,22 @@
+.bounded {
+	max-width: 1200px;
+	width: 100%;
+	padding: 0;
+
+}
+
+.navbar {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.navbar-logo {
+	position: relative;
+	top: -60px;
+	float: left;
+}
+
+.bounded form {
+	width: auto;
+}

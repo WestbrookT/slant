@@ -100,7 +100,7 @@ def score(text, keywords, query):
 
 if __name__ == '__main__':
 
-	f = open('tmp/query.json')
+	f = open('query.json')
 	data = load(f)
 	f.close()
 	print(score(data['text'], data['keywords'], data['query']))
