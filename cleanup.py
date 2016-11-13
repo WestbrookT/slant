@@ -15,9 +15,9 @@ for url in articles['right']:
 	if not articles['right'][url] == "":
 		cleanarticles['right'][url] = articles['right'][url]
 
-for url in cleanarticles['neutral']:
+for url in articles['neutral']:
 	print(url)
-	if not cleanarticles['neutral'][url] == "":
+	if not articles['neutral'][url] == "":
 		cleanarticles['neutral'][url] = articles['neutral'][url]
 
 open('cleanarticles.json', 'w').write(json.dumps(cleanarticles))

@@ -4,8 +4,9 @@ import os, datetime, json, re
 
 app = Flask(__name__)
 
-import dinter
+#import dinter
 
+#This function converts a float from range 0 to 1 to a hex code ranging from red to grey to blue.
 def indextohex(index):
     r = int(255 * (1-index))
     g = int(255 * index)
@@ -19,17 +20,11 @@ def indextohex(index):
 
 @app.route('/')
 def hello_world():
-
-    return redirect("index.html")
+    return render_template('homesearch.html')
 
 @app.route('/q')
 def getQuery():
-    query = request.args.get('query','')
-    data = search(query)
-    if(request.args.get('json') != None):
-        return jsonify(data)
-    else:
-        return query
+    return render_template('q.html',query = query, results=[1,2,3,4])
 
 @app.route('/amalgam')
 def getAmalgram():
