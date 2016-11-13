@@ -25,7 +25,7 @@ def hello_world():
 @app.route('/q')
 def getQuery():
     query = request.args.get('query','')
-    return render_template('q.html',query = query, results=[1,2,3,4])
+    return render_template('q.html',query = query, results=[{"color":indextohex(0.2),"title":"Donald Trump Eats The Best Poop","blurb":"Donald Trump eats only the best poop","link":"http://breitbart.com","source":"Breitbart"},{"color":indextohex(0.9),"title":"Donald Trump Eats The Worst Poop","blurb":"Donald Trump eats only the worst poop","link":"http://buzzfeed.com","source":"Buzzfeed"})
 
 @app.route('/amalgam')
 def getAmalgram():
