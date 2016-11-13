@@ -38,6 +38,7 @@ def getQuery():
     search_results = dinter.lambda_search(query)
     print(search_results)
     results_remove=[]
+    index = 0
     for result in search_results:
         #print(result["lean"])
         print(result)
@@ -49,9 +50,10 @@ def getQuery():
         (result["source"])=getDomain(result["link"])
         if(result["rel"]<0.5):
             results_remove.append(result)
+        index += 1
 
     for result in results_remove:
-        search_results.pop(result)
+        search_results.remove(result)
         #print(result["blurb"])
     return render_template('q.html',query = query, results=(search_results))
 
