@@ -36,18 +36,20 @@ def getQuery():
     query = request.args.get('query','')
     print("Hiiiii I'm doing a search lol")
     search_results = dinter.query(0,int(dinter.count()/10),query)
-    print(search_results)
+    #print(search_results)
     for result in search_results:
         #print(search_results[result]["lean"])
 
 
         search_results[result]["color"]=indextohex(search_results[result]["lean"])
-        search_results[result]["text"]=search_results[result]["text"].replace("sign up for our newsletter ","")
+        search_results[result]["text"]=search_results[result]["text"].replace("sign up for our newsletter","")
         search_results[result]["blurb"]=search_results[result]["text"][:300]
         search_results[result]["title"]=search_results[result]["text"][:55]
-        search_results[result]["source"]=getDomain(result);
+        (search_results[result]["source"])=getDomain(result);
+        if(search_results[result]["rel"]<0.5):
+            search_results.pop(result, None)
         #print(search_results[result]["blurb"])
-    return render_template('q.html',query = query, results=search_results)
+    return render_template('q.html',query = query, results=(search_results))
 
 @app.route('/amalgam')
 def getAmalgram():
