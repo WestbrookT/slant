@@ -27,10 +27,10 @@ def hello_world():
 def getQuery():
     query = request.args.get('query','')
     #data = search(query)
-    if(request.args.get('json') != None):
-        #return jsonify(data)
-    else:
-         return render_template('q.html',query = query, results=[1,2,3,4])
+    #if(request.args.get('json') != None):
+    #return jsonify(data)
+    #else:
+    return render_template('q.html',query = query, results=[1,2,3,4])
 
 @app.route('/amalgam')
 def getAmalgram():
