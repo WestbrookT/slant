@@ -35,24 +35,26 @@ def hello_world():
 def getQuery():
     query = request.args.get('query','')
     print("Hiiiii I'm doing a search lol")
-    search_results = dinter.query(0,int(dinter.count()),query)
-    #print(search_results)
+    search_results = dinter.lambda_search(query)
+    print(search_results)
     results_remove=[]
+    index = 0
     for result in search_results:
-        #print(search_results[result]["lean"])
+        #print(result["lean"])
+        print(result)
 
-
-        search_results[result]["color"]=indextohex(search_results[result]["lean"])
-        search_results[result]["text"]=search_results[result]["text"].replace("sign up for our newsletter","")
-        search_results[result]["blurb"]=search_results[result]["text"][:300]
-        search_results[result]["title"]=search_results[result]["text"][:55]
-        (search_results[result]["source"])=getDomain(result)+" "+str(search_results[result]["lean"])
-        if(search_results[result]["rel"]<0.5):
+        result["color"]=indextohex(result["lean"])
+        result["text"]=result["text"].replace("sign up for our newsletter","")
+        result["blurb"]=result["text"][:300]
+        result["title"]=result["text"][:55]
+        (result["source"])=getDomain(result["link"])
+        if(result["rel"]<0.5):
             results_remove.append(result)
+        index += 1
 
     for result in results_remove:
-        search_results.pop(result, None)
-        #print(search_results[result]["blurb"])
+        search_results.remove(result)
+        #print(result["blurb"])
     return render_template('q.html',query = query, results=(search_results))
 
 @app.route('/amalgam')
