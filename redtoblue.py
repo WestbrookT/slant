@@ -6,7 +6,7 @@ if (g > 128):
 
 b = int(255 * index)
 
-rhex = hex(r)
-ghex = hex(g)
-bhex = hex(b)
+rhex = int(r,16)
+ghex = int(g,16)
+bhex = int(b,16)
 print(str(rhex)+str(ghex)+str(bhex))
