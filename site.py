@@ -4,7 +4,7 @@ import os, datetime, json, re
 
 app = Flask(__name__)
 
-#import dinter
+import dinter
 
 #This function converts a float from range 0 to 1 to a hex code ranging from red to grey to blue.
 def indextohex(index):
