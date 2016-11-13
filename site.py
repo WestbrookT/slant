@@ -47,7 +47,6 @@ def getQuery():
         search_results[result]["blurb"]=search_results[result]["text"][:300]
         search_results[result]["title"]=search_results[result]["text"][:55]
         (search_results[result]["source"])=getDomain(result)+" "+str(search_results[result]["lean"])0
-        ;
         if(search_results[result]["rel"]<0.5):
             results_remove.append(result)
 
