@@ -48,7 +48,7 @@ def getQuery():
         result["blurb"]=result["text"][:300]
         result["title"]=result["text"][:55]
         (result["source"])=getDomain(result["link"])
-        if(result["rel"]<0.5):
+        if(result["rel"]<0.0):
             results_remove.append(result)
         index += 1
 
