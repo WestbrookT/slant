@@ -35,7 +35,7 @@ def hello_world():
 def getQuery():
     query = request.args.get('query','')
     print("Hiiiii I'm doing a search lol")
-    search_results = dinter.lambda_query(query)
+    search_results = dinter.lambda_search(query)
     #print(search_results)
     results_remove=[]
     for result in search_results:
