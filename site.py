@@ -24,6 +24,7 @@ def hello_world():
 
 @app.route('/q')
 def getQuery():
+    query = request.args.get('query','')
     return render_template('q.html',query = query, results=[1,2,3,4])
 
 @app.route('/amalgam')
