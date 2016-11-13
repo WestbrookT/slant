@@ -4,12 +4,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/style.css">
   </head>
   <body>
-    <center>
-    <img width = "383" height = "494" src="http://i.imgur.com/Otn5WMj.png">
-    </center>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img src="http://i.imgur.com/Ft5sSUg.png" height="80%" ></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><form action="/q" method="get">
+         <div class="input-group" style="width:25%; min-width: 250px; max-width:400px;">
+        <input type="text" class="form-control" name="query">
+        <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
+        </form>
+
+      </li>
+    </ul>
+      </div>
+    </nav>
     <div class="container-fluid center-block"  style="width:100%">
       <div class="row center-block" style="max-width:1200px">
         <div class="col-md-12">

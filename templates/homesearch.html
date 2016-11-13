@@ -1,27 +1,21 @@
-{%extends "layout.html"%}
+{%extends "layouthome.html"%}
 {% block content %}
-
-<form action="/q" method="get">
-  <input type="text" class="form-control" name="query">
-  <input type="submit" class="btn btn-success form-control"  value="Search">
+<center>
+  <img src="http://i.imgur.com/00UA6ju.png" style="width:50%;height:50%;">
 </br>
-  <div class="btn-group col-xs-12" data-toggle="buttons">
-    <div class = "row">
-      <div class = "col-xs-4">
-    <label class="btn btn-danger btn-block">
-      <input type="radio" name="conservative" id="option1" autocomplete="off"> Conservative
+<div class="well well-lg" style="width:50%; min-width: 500px; max-width:700px;">
+<h2>Slant is a search engine that uses neural networks to check the bias of political news articles on the internet.</h2></br>
+</div>
+<form action="/q" method="get">
+
+  
+
+   <div class="input-group input-lg" style="width:50%; min-width: 500px; max-width:700px;">
+  <input type="text" class="form-control input-lg" name="query">
+  <div class="input-group-btn">
+          <button class="btn btn-default input-lg" type="submit"><i class="glyphicon glyphicon-search"></i></button>
       </div>
-    <div class = "col-xs-4">
-    <label class="btn btn-default active btn-block">
-      <input type="radio" name="neutral" id="option2" autocomplete="off" checked> Neutral
-    </label>
     </div>
-    <div class = "col-xs-4">
-    <label class="btn btn-primary btn-block">
-      <input type="radio" name="liberal" id="option3" autocomplete="off"> Liberal
-    </label>
-  </div>
-  </div>
-  </div>
-</form>
+  </form>
+</center>
 {% endblock %}
