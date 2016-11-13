@@ -1,6 +1,7 @@
 {%extends "layout.html"%}
 {% block content %}
         {% for n in results[:1] %}
+        <a href={{n["link"]}}>
           <div class = "row">
             <div class = "fill col-xs-12 article-box-big" style="background:url({{n["image"]}});">
               <div class="article-caption-big">
@@ -11,9 +12,11 @@
               </div>
             </div>
           </div>
+        </a>
         </br>
         {% endfor %}
           {% for n in results[1:] %}
+          <a href={{n["link"]}}>
           <div class = "row">
             <div class = "fill col-xs-12 article-box-small" style="background:url({{n["image"]}});">
               <div class="article-caption-small">
@@ -24,6 +27,7 @@
               </div>
             </div>
           </div>
+        </a>
           </br>
           {% endfor %}
 {% endblock %}
