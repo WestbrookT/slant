@@ -51,7 +51,7 @@ def getQuery():
             results_remove.append(result)
 
     for result in results_remove:
-        search_results.pop(result, None)
+        search_results.pop(result)
         #print(result["blurb"])
     return render_template('q.html',query = query, results=(search_results))
 
