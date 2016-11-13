@@ -56,7 +56,7 @@ def getQuery():
         search_results.remove(result)
         #print(result["blurb"])
     newlist = sorted(search_results, key=lambda k: k['rel'])
-    return render_template('q.html',query = query, results=(newlist))
+    return render_template('q.html',query = query, results=(newlist[::-1]))
 
 @app.route('/amalgam')
 def getAmalgram():
