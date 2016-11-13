@@ -28,7 +28,7 @@ def getQuery():
     print("Hiiiii I'm doing a search lol")
     search_results = dinter.query(0,int(dinter.count()/10),query)
     for result in search_results:
-        print result["lean"]
+        print (result["lean"])
         result["color"]=indextohex(result["lean"])
         result["source"]="your mom"
         result["blurb"]=result["text"][:155]
