@@ -5,6 +5,7 @@ from math import sqrt
 from sqlalchemy import and_
 from json import dump, load
 from os import system
+import multiprocessing as mp
 
 init_db()
 
@@ -148,7 +149,7 @@ def count():
 	return Page.query.count()
 
 
-def query(start, stop, string):
+def query_d(start, stop, string):
 	pages = list(Page.query.filter(and_(Page.id >= start, Page.id < stop)))
 	# print(list(pages))
 
@@ -180,11 +181,9 @@ def query(start, stop, string):
 def lambda_search(q):
 
 	fin = []
-	count = 0
+
 	for page in get_all():
-		if count == 20:
-			break
-		count += 1
+
 
 		inp = open('pl.json', 'w')
 		pl = {'text':page.content, 'keywords':page.keywords, 'query':q}
@@ -201,8 +200,22 @@ def lambda_search(q):
 
 
 
-		print(data)
+		#print(data)
 
 		fin.append({'text':page.content, 'img':page.img, 'rel':float(data['body']), 'lean':page.lean, 'link':page.link})
 	return fin
 
+
+def chunks(l, n):
+	"""Yield successive n-sized chunks from l."""
+	for i in range(0, len(l), n):
+		yield l[i:i + n]
+
+def sub_query(q, query, chunk):
+
+
+def l_query(query):
+	l = list(get_all())
+	q = mp.Queue()
+	for chunk in chunks(l, 8):
+		sub_query(q, query, chunk)
