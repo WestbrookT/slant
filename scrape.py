@@ -5,7 +5,8 @@ import json
 
 left = listdir('left')
 right = listdir('right')
-articles = {'left' : {}, 'right': {}}
+neutral = listdir('neutral')
+articles = {'left' : {}, 'right' : {}, 'neutral' : {}}
 
 for news in left:
 	urls = open('left/'+news)
@@ -33,6 +34,19 @@ for news in right:
 		articles['right'][url] = article.text
 	urls.close()
 
+
+for news in neutral:
+	urls = open('neutral/'+news)
+	
+	for url in urls:
+		article = Article(url)
+		article.download()
+		try:
+			article.parse()
+		except newspaper.article.ArticleException:
+			continue
+		articles['neutral'][url] = article.text
+	urls.close()
 dump = json.dumps(articles)
 
 f = open('articles.json', 'w')
