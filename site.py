@@ -29,13 +29,15 @@ def getQuery():
     search_results = dinter.query(0,int(dinter.count()/10),query)
     #print(search_results)
     for result in search_results:
-        print(search_results[result]["lean"])
-        #print (result["lean"])
+        #print(search_results[result]["lean"])
+
+        print (search_results[result]["image"])
         search_results[result]["color"]=indextohex(search_results[result]["lean"])
         search_results[result]["source"]="your mom"
-        search_results[result]["blurb"]=search_results[result]["text"]
-        search_results[result]["title"]=search_results[result]["text"]
-        print(search_results[result]["blurb"])
+        search_results[result]["blurb"]=search_results[result]["text"][:300]
+        search_results[result]["title"]=search_results[result]["text"][:55]
+        search_results[result]["source"]=result.match("/:\/\/(www[0-9]?\.)?(.[^/:]+)/i");
+        #print(search_results[result]["blurb"])
     return render_template('q.html',query = query, results=search_results)
 
 @app.route('/amalgam')
