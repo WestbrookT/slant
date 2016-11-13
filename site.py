@@ -30,7 +30,8 @@ def getQuery():
     print(search_results)
     for result in search_results:
         result["color"]=indextohex(result["lean"])
-        result["blurb"]=indextohex(result["text"][:155])
+        result["source"]="your mom"
+        result["blurb"]=result["text"][:155]
     return render_template('q.html',query = query, results=search_results)
 
 @app.route('/amalgam')
