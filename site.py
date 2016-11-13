@@ -22,6 +22,10 @@ def indextohex(index):
 def hello_world():
     return render_template('homesearch.html')
 
+@app.route('/style.css')
+def style():
+    return render_template('style.css')
+
 @app.route('/q')
 def getQuery():
     query = request.args.get('query','')
