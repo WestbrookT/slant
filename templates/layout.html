@@ -90,6 +90,32 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">slant</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><form action="/q" method="get">
+        <input type="text" class="form-control" name="query">
+        <div class="btn-group" data-toggle="buttons">
+
+          <label class="btn btn-danger">
+            <input type="radio" name="conservative" id="option1" autocomplete="off">
+          <label class="btn btn-default active">
+            <input type="radio" name="neutral" id="option2" autocomplete="off" checked>
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="liberal" id="option3" autocomplete="off">
+          </label>
+        </div>
+        <input type="submit" class="btn btn-success form-control"  value="Search">
+        </form>
+
+      </li>
+    </ul>
+      </div>
+    </nav>
     <center>
     <img width = "383" height = "494" src="http://i.imgur.com/Otn5WMj.png">
     </center>
