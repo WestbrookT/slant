@@ -32,7 +32,7 @@ def getQuery():
         result["color"]=indextohex(result["lean"])
         result["source"]="your mom"
         result["blurb"]=result["text"][:155]
-    return render_template('q.html',query = query, results=search_results)
+    return render_template('q.html',query = query, results=search_results[:10])
 
 @app.route('/amalgam')
 def getAmalgram():
