@@ -1,8 +1,8 @@
 {%extends "layout.html"%}
 {% block content %}
           <div class = "row">
-            <div class = "fill col-xs-12" style="height:360px; background:url(http://i.imgur.com/VY2Lskp.png); background-size: cover; background-position: center center; position: relative;">
-              <div class="article-caption" style="background-color: rgba(0,0,0,0.8); color: white;">
+            <div class = "fill col-xs-12 article-box-big">
+              <div class="article-caption">
                 <h2>(kancolle) kongou is mai waifu</h2>
                 kongou is so smol and so nice nyaa
               </div>
@@ -11,14 +11,14 @@
             </div>
           </div>
 
-          {% for n in results[10:] %}
+          {% for n in results[1:] %}
           <div class = "row">
-            <div class = "panel panel-default">
-              <div class = "panel-heading" style = "background-color: #0000FF">
-                <h2><a href="http://buzzfeed.com"><div style = "color: #FFFFFF">REALLY DELUDED ARTICLE ABOUT HOW HILLARY IS PERFECT</div></a></h2>
+            <div class = "fill col-xs-12 article-box-small">
+              <div class="article-caption">
+                <h2>(kancolle) kongou is mai waifu</h2>
+                kongou is so smol and so nice nyaa
               </div>
-              <div class = "panel-body">
-                HILLARY CLINTON IS AMAZING YAAAAAS QUEEEEEN {{n}}
+              <div class="article-tab-small" style="background-color: #FF0000;">
               </div>
             </div>
           </div>
