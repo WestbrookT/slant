@@ -3,7 +3,9 @@
         {% for n in results[:1] %}
         <a href={{n["link"]}}>
           <div class = "row">
-            <div class = "fill col-xs-12 article-box-big" style="background:url({{n["image"]}});">
+            <div class = "fill col-xs-12 article-box-big" style="background:url({{n["image"]}});background-size: cover;
+            background-position: center center;
+            position: relative;box-shadow: 5px 5px 2px #888888;">
               <div class="article-caption-big">
                 <h2>({{n["source"]}}) {{n["title"]}}</h2>
                 {{n["blurb"]}}
@@ -18,7 +20,7 @@
           {% for n in results[1:] %}
           <a href={{n["link"]}}>
           <div class = "row">
-            <div class = "fill col-xs-12 article-box-small" style="background:url({{n["image"]}});">
+            <div class = "fill col-xs-12 article-box-small" style="background:url({{n["image"]}});box-shadow: 5px 5px 2px #888888;">
               <div class="article-caption-small">
                 <h3>({{n["source"]}}) {{n["title"]}}</h3>
                 {{n["blurb"]}}
