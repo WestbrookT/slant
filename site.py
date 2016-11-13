@@ -37,6 +37,7 @@ def getQuery():
     print("Hiiiii I'm doing a search lol")
     search_results = dinter.query(0,int(dinter.count()/10),query)
     #print(search_results)
+    results_remove[]
     for result in search_results:
         #print(search_results[result]["lean"])
 
@@ -47,7 +48,10 @@ def getQuery():
         search_results[result]["title"]=search_results[result]["text"][:55]
         (search_results[result]["source"])=getDomain(result);
         if(search_results[result]["rel"]<0.5):
-            search_results.pop(result, None)
+            results_remove.append(result)
+
+    for result in results_remove:
+        search_results.pop(result, None)
         #print(search_results[result]["blurb"])
     return render_template('q.html',query = query, results=(search_results))
 
