@@ -1,8 +1,9 @@
 from nltk.corpus import movie_reviews, stopwords
-from nltk.classify import NaiveBayesClassifier
+from nltk.classify import NaiveBayesClassifier, util
 from nltk.collocations import BigramCollocationFinder
 from nltk.metrics import BigramAssocMeasures
 import itertools
+import json, pickle
 
 score_fn = BigramAssocMeasures.chi_sq
 
@@ -36,10 +37,25 @@ def corpus(side, corpus):
 
 
 
-stuff = {'right': {'url':'donald trump'}, 'left': {'url': 'hillary'}}
+stuff = json.load(open('cleanarticles.json'))
 right = corpus('right', stuff)
 left = corpus('left', stuff)
+neutral = corpus('neutral', stuff)
 
-cls = NaiveBayesClassifier.train(right+left)
+print(len(stuff['right'].keys()), len(stuff['left'].keys()), len(stuff['neutral'].keys()))
 
-print(cls.classify(word_feats("red")))
+pos = 400
+
+#
+data = right[:600] + left + neutral
+#  data = right[:pos] + left[:1843-pos] + neutral[:150]
+# test = right[pos:] + left[pos:] + neutral[150:]
+
+
+
+cls = NaiveBayesClassifier.train(data)
+
+#print(util.accuracy(cls, test))
+f = open('classifier.py', 'wb')
+pickle.dump(cls, f)
+f.close()
