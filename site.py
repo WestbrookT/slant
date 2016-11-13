@@ -34,6 +34,7 @@ def getQuery():
         search_results[result]["color"]=indextohex(search_results[result]["lean"])
         search_results[result]["source"]="your mom"
         search_results[result]["blurb"]=search_results[result]["text"]
+        search_results[result]["title"]=search_results[result]["text"]
         print(search_results[result]["blurb"])
     return render_template('q.html',query = query, results=search_results)
 
