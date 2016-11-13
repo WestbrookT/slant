@@ -27,6 +27,7 @@ def getQuery():
     query = request.args.get('query','')
     print("Hiiiii I'm doing a search lol")
     search_results = dinter.query(0,int(dinter.count()/10),query)
+    print(search_results)
     for result in search_results:
         print(result)
         print (result["lean"])
