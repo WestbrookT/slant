@@ -20,16 +20,10 @@ def indextohex(index):
 
 @app.route('/')
 def hello_world():
-
-    return redirect("index.html")
+    return render_template('homesearch.html')
 
 @app.route('/q')
 def getQuery():
-    query = request.args.get('query','')
-    #data = search(query)
-    #if(request.args.get('json') != None):
-    #return jsonify(data)
-    #else:
     return render_template('q.html',query = query, results=[1,2,3,4])
 
 @app.route('/amalgam')
