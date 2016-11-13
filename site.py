@@ -46,7 +46,7 @@ def getQuery():
         search_results[result]["text"]=search_results[result]["text"].replace("sign up for our newsletter","")
         search_results[result]["blurb"]=search_results[result]["text"][:300]
         search_results[result]["title"]=search_results[result]["text"][:55]
-        (search_results[result]["source"])=getDomain(result)+" "+search_results[result]["lean"];
+        (search_results[result]["source"])=getDomain(result)+" "+str(search_results[result]["lean"]);
         if(search_results[result]["rel"]<0.5):
             results_remove.append(result)
 
