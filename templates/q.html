@@ -7,7 +7,7 @@
             background-position: center center;
             position: relative;box-shadow: 5px 5px 2px #888888;">
               <div class="article-caption-big">
-                <h2>({{results[n]["source"]}}) {{results[n]["title"][:60]}}</h2>
+                <h2>{{results[n]["title"][:60]}}</h2>
                 {{results[n]["blurb"][:255]}}
               </div>
               <div class="article-tab-big" style="background-color: #{{results[n]["color"]}};">
@@ -22,7 +22,7 @@
           <div class = "row">
             <div class = "fill col-xs-12 article-box-small" style="background:url({{results[n]["image"]}});">
               <div class="article-caption-small">
-                <h3>({{results[n]["source"]}}) {{results[n]["title"][:60]}}</h3>
+                <h3>{{results[n]["title"][:60]}}</h3>
                 {{results[n]["blurb"][:255]}}
               </div>
               <div class="article-tab-small" style="background-color: #{{results[n]["color"]}};">
