@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String, Integer
+from sqlalchemy import create_engine, Column, String, Integer, Float
 from db import Base
 from newspaper import Article, nlp
 
@@ -11,25 +11,32 @@ class Page(Base):
 	content = Column(String)
 	keywords = Column(String)
 	link = Column(String, unique=True)
+	lean = Column(Float)
 
 
-	def __init__(self, link):
-		article = Article(link)
-		article.download()
-		article.parse()
 
-		content = article.text
+	def link_init(self, link):
+		pass
 
-		keywords = ''
+	def __init__(self, link, text=None):
+		if text == None:
+			article = Article(link)
+			article.download()
+			article.parse()
 
-		for i in nlp.keywords(content):
-			keywords += i.lower() + ' '
+			content = article.text
 
-		self.content = content.lower()
-		self.keywords = keywords
-		self.link = link
+			keywords = ''
 
-	def __init__(self, link, text):
+			for i in nlp.keywords(content):
+				keywords += i.lower() + ' '
+
+			self.content = content.lower()
+			self.keywords = keywords
+			self.link = link
+			return
+
+
 		self.content = text.lower()
 
 		keywords = ''

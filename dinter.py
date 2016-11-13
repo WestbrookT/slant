@@ -10,6 +10,9 @@ def create_page(link):
 
 	session.add(doc)
 
+def commit():
+	session.commit()
+
 def create_pages(links):
 
 	for link in links:
@@ -82,8 +85,9 @@ init_db()
 
 
 
-#create_page('https://www.trasewestbrook.com/pages/Tamuhack%202016')
-#create_page('https://www.trasewestbrook.com/pages/Neural%20Network')
+create_page('https://www.trasewestbrook.com/pages/Tamuhack%202016')
+create_page('https://www.trasewestbrook.com/pages/Neural%20Network')
+commit()
 print(search('network'))
 
 print(get_link('https://www.trasewestbrook.com/pages/Neural%20Network').keywords)
