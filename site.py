@@ -39,20 +39,20 @@ def getQuery():
     print(search_results)
     results_remove=[]
     for result in search_results:
-        #print(n["lean"])
+        #print(result["lean"])
 
 
-        n["color"]=indextohex(n["lean"])
-        n["text"]=n["text"].replace("sign up for our newsletter","")
-        n["blurb"]=n["text"][:300]
-        n["title"]=n["text"][:55]
-        (n["source"])=getDomain(result)
-        if(n["rel"]<0.5):
+        result["color"]=indextohex(result["lean"])
+        result["text"]=result["text"].replace("sign up for our newsletter","")
+        result["blurb"]=result["text"][:300]
+        result["title"]=result["text"][:55]
+        (result["source"])=getDomain(result)
+        if(result["rel"]<0.5):
             results_remove.append(result)
 
     for result in results_remove:
         search_results.pop(result, None)
-        #print(n["blurb"])
+        #print(result["blurb"])
     return render_template('q.html',query = query, results=(search_results))
 
 @app.route('/amalgam')
