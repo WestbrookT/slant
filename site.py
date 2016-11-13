@@ -31,10 +31,10 @@ def getQuery():
     for result in search_results:
         print(search_results[result]["lean"])
         #print (result["lean"])
-        #result["color"]=indextohex(result["lean"])
-        #result["source"]="your mom"
-        #result["blurb"]=result["text"][:155]
-    return render_template('q.html',query = query, results=search_results[:10])
+        search_results[result]["color"]=indextohex(search_results[result]["lean"])
+        search_results[result]["source"]="your mom"
+        search_results[result]["blurb"]=search_results[result]["text"][:155]
+    return render_template('q.html',query = query, results=search_results)
 
 @app.route('/amalgam')
 def getAmalgram():
