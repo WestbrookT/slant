@@ -93,4 +93,4 @@ print(search('network'))
 print(get_link('https://www.trasewestbrook.com/pages/Neural%20Network').keywords)
 
 for i in get_all():
-	print(i.link, i.keywords)
+	print(i.link, i.lean)

@@ -1,6 +1,18 @@
 from sqlalchemy import create_engine, Column, String, Integer, Float
 from db import Base
 from newspaper import Article, nlp
+from cls import cls
+
+from nltk.collocations import BigramCollocationFinder
+from nltk.metrics import BigramAssocMeasures
+from nltk.corpus import stopwords
+
+sw = set(stopwords.words('english'))
+
+import itertools
+
+score_fn = BigramAssocMeasures.chi_sq
+
 
 
 class Page(Base):
@@ -12,13 +24,14 @@ class Page(Base):
 	keywords = Column(String)
 	link = Column(String, unique=True)
 	lean = Column(Float)
+	img = Column(String)
 
 
 
 	def link_init(self, link):
 		pass
 
-	def __init__(self, link, text=None):
+	def __init__(self, link, text=None, img=None):
 		if text == None:
 			article = Article(link)
 			article.download()
@@ -34,6 +47,11 @@ class Page(Base):
 			self.content = content.lower()
 			self.keywords = keywords
 			self.link = link
+			self.img = article.top_image
+
+			vals = {'right': 0, 'left': 1, 'neutral': .5}
+
+			self.lean = vals[cls.classify(self.word_feats(content))]
 			return
 
 
@@ -45,3 +63,19 @@ class Page(Base):
 			keywords += i.lower() + ' '
 		self.link = link
 		self.keywords = keywords
+		self.img = img
+		vals = {'right': 0, 'left': 1, 'neutral': .5}
+
+		self.lean = vals[cls.classify(self.word_feats(self.content))]
+
+
+	def word_feats(self, words):
+		out = {}
+
+		bigram_finder = BigramCollocationFinder.from_words(words)
+		bigrams = bigram_finder.nbest(score_fn, n=10)
+
+		for word in itertools.chain(words, bigrams):
+			if word not in sw:
+				out[word] = True
+		return out
