@@ -6,6 +6,17 @@ app = Flask(__name__)
 
 import dinter
 
+def indextohex(index):
+    r = int(255 * (1-index))
+    g = int(255 * index)
+    if (g > 128):
+        g = 255-g
+    b = int(255 * index)
+    rhex = format(r,'02x')
+    ghex = format(g,'02x')
+    bhex = format(b,'02x')
+    return(str(rhex)+str(ghex)+str(bhex))
+
 @app.route('/')
 def hello_world():
 
