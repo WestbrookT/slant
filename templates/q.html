@@ -1,8 +1,9 @@
 {%extends "layout.html"%}
 {% block content %}
         </br>
+        <h1>Results for: "{{query}}"</h1>
       </br>
-        {% for n in results[:1] %}
+        {% for n in results[:3] %}
         <a href={{n["link"]}}>
           <div class = "row">
             <div class = "fill col-xs-12 article-box-big" style="background:url({{n["img"]}});background-size: cover;
@@ -19,7 +20,7 @@
         </a>
       </br>
         {% endfor %}
-          {% for n in results[1:] %}
+          {% for n in results[3:] %}
           <a href={{n["link"]}}>
           <div class = "row">
             <div class = "fill col-xs-12 article-box-small" style="background:url({{n["image"]}});">
