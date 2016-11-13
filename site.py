@@ -40,7 +40,7 @@ def getQuery():
     results_remove=[]
     for result in search_results:
         #print(result["lean"])
-
+        print(result)
 
         result["color"]=indextohex(result["lean"])
         result["text"]=result["text"].replace("sign up for our newsletter","")
