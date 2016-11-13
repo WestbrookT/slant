@@ -2,11 +2,13 @@ from models import Page
 from db import session, init_db
 from nltk.metrics import edit_distance
 from math import sqrt
+from sqlalchemy import and_
 
+init_db()
 
-def create_page(link):
+def create_page(link, text=None, img=None):
 
-	doc = Page(link)
+	doc = Page(link, text=text, img=img)
 
 	session.add(doc)
 
@@ -53,11 +55,11 @@ def freq(word, text):
 
 def search(query):
 
-	pages = list(get_all())
+
 	out = {}
 	words = query.lower().split(' ')
 	wl = len(words)
-	for page in pages:
+	for page in get_all():
 		out[page.link] = 0
 		space = page.content.lower().split(' ')
 		count = 0
@@ -72,25 +74,45 @@ def search(query):
 
 
 		temp = count/wl
-		print(count, page.keywords)
+		#print(count, page.keywords)
 
 		out[page.link] = (out[page.link]/len(space)) + count
 
 
 
+
 	return out
 
+def count():
+	return Page.query.count()
 
-init_db()
+def query(start, stop, string):
 
 
+	pages = list(Page.query.filter(and_(Page.id >= start, Page.id < stop)))
+	#print(list(pages))
 
-create_page('https://www.trasewestbrook.com/pages/Tamuhack%202016')
-create_page('https://www.trasewestbrook.com/pages/Neural%20Network')
-commit()
-print(search('network'))
+	out = {}
+	words = string.lower().split(' ')
+	wl = len(words)
 
-print(get_link('https://www.trasewestbrook.com/pages/Neural%20Network').keywords)
+	for i in pages:
+		print(i.link)
 
-for i in get_all():
-	print(i.link, i.lean)
+	for page in pages:
+		out[page.link] = 0
+		space = page.content.lower().split(' ')
+		count = 0
+		for word in words:
+			out[page.link] += freq(word, space)
+
+			for token in page.keywords.split(' '):
+				if match(word, token):
+					count += 1
+
+		temp = count / wl
+		# print(count, page.keywords)
+
+		out[page.link] = (out[page.link] / len(space)) + count
+
+	return out

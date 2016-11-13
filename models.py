@@ -79,3 +79,7 @@ class Page(Base):
 			if word not in sw:
 				out[word] = True
 		return out
+
+
+
+# data = {'url':{'img':'string', 'article':'string'}}
