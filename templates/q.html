@@ -1,7 +1,12 @@
 {%extends "layout.html"%}
 {% block content %}
-          Results of your query: {{query}}
-          {% for n in results %}
+          <div class = "row">
+            <div class = "fill col-xs-12" style="height:300px">
+              <img src="http://i.imgur.com/VY2Lskp.png">
+            </div>
+          </div>
+
+          {% for n in results[1:] %}
           <div class = "row">
             <div class = "panel panel-default">
               <div class = "panel-heading" style = "background-color: #0000FF">
