@@ -42,7 +42,7 @@ def getQuery():
 
 
         search_results[result]["color"]=indextohex(search_results[result]["lean"])
-
+        search_results[result]["text"]=search_results[result]["text"].replace("sign up for our newsletter ","")
         search_results[result]["blurb"]=search_results[result]["text"][:300]
         search_results[result]["title"]=search_results[result]["text"][:55]
         search_results[result]["source"]=getDomain(result);
