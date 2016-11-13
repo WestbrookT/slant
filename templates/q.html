@@ -1,0 +1,15 @@
+{%extends "layout.html"%}
+          Results of your query: {{query}}
+          {% for n in results %}
+          <div class = "row">
+            <div class = "panel panel-default">
+              <div class = "panel-heading" style = "background-color: #0000FF">
+                <h2><a href="http://buzzfeed.com"><div style = "color: #FFFFFF">REALLY DELUDED ARTICLE ABOUT HOW HILLARY IS PERFECT</div></a></h2>
+              </div>
+              <div class = "panel-body">
+                HILLARY CLINTON IS AMAZING YAAAAAS QUEEEEEN {{n}}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+{% endblock %}

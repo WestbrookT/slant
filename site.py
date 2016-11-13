@@ -20,11 +20,11 @@ def indextohex(index):
 
 @app.route('/')
 def hello_world():
-    return render_template('templates/homesearch.html')
+    return render_template('homesearch.html')
 
 @app.route('/q')
 def getQuery():
-    return render_template('templates/q.html',query = query, results=[1,2,3,4])
+    return render_template('q.html',query = query, results=[1,2,3,4])
 
 @app.route('/amalgam')
 def getAmalgram():
