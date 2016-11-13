@@ -181,9 +181,10 @@ def query_d(start, stop, string):
 def lambda_search(q):
 
 	fin = []
-
+	count = 0
 	for page in get_all():
-
+		if(count > 25):
+			break
 
 		inp = open('pl.json', 'w')
 		pl = {'text':page.content, 'keywords':page.keywords, 'query':q}
@@ -203,6 +204,7 @@ def lambda_search(q):
 		#print(data)
 
 		fin.append({'text':page.content, 'img':page.img, 'rel':float(data['body']), 'lean':page.lean, 'link':page.link})
+		count += 1
 	return fin
 
 
