@@ -26,7 +26,7 @@ def hello_world():
 def getQuery():
     query = request.args.get('query','')
     print("Hiiiii I'm doing a search lol")
-    search_results = dinter.search(query)
+    search_results = dinter.query(0,dinter.count(),query)
     return render_template('q.html',query = query, results=[{"color":indextohex(0.2),"title":"Donald Trump Eats The Best Poop","blurb":"Donald Trump eats only the best poop","link":"http://breitbart.com","source":"Breitbart","image":"http://i.imgur.com/q73B2jL.jpg"},{"color":indextohex(0.9),"title":"Donald Trump Eats The Worst Poop","blurb":"Donald Trump eats only the worst poop","link":"http://buzzfeed.com","source":"Buzzfeed","image":"http://i.imgur.com/gPceg2V.jpg"},{"color":indextohex(0.55),"title":"The Case For Eating Poop Like Trump","blurb":"Donald Trump has a good reason to eat poop and so do you","link":"http://breitbart.com","source":"The Atlantic","image":"http://i.imgur.com/q73B2jL.jpg"},{"color":indextohex(0.75),"title":"Eating poop does not represent America","blurb":"We must not allow the practice of eating poop to be acceptable in the nation","link":"http://buzzfeed.com","source":"Everyday Feminism","image":"http://i.imgur.com/gPceg2V.jpg"},{"color":indextohex(0.50),"title":"The history of eating poop in America","blurb":"This nation has had a long history with people who secretly eat poop","link":"http://buzzfeed.com","source":"Washington Post","image":"http://i.imgur.com/gPceg2V.jpg"}])
 
 @app.route('/amalgam')
