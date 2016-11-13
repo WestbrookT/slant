@@ -1,7 +1,7 @@
 {%extends "layout.html"%}
 {% block content %}
         {% for n in results %}
-        <a href={{results[n]["link"]}}>
+        <a href={{n}}>
           <div class = "row">
             <div class = "fill col-xs-12 article-box-big" style="background:url({{results[n]["image"]}});background-size: cover;
             background-position: center center;
@@ -18,7 +18,7 @@
         </br>
         {% endfor %}
           {% for n in results %}
-          <a href={{results[n]["link"]}}>
+          <a href={{n}}>
           <div class = "row">
             <div class = "fill col-xs-12 article-box-small" style="background:url({{results[n]["image"]}});">
               <div class="article-caption-small">
