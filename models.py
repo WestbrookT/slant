@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, String, Integer, Float
 from db import Base
-from newspaper import Article, nlp
+#from newspaper import Article, nlp
 from cls import cls
 
 from nltk.collocations import BigramCollocationFinder

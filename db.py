@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
-from newspaper import Article, nlp
+#from newspaper import Article, nlp
 
 
 db = create_engine('sqlite:///data.db', echo=False)

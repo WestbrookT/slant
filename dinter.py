@@ -107,6 +107,8 @@ def get_all():
 		yield Page.query.get(num)
 		num += 1
 
+def get_all_o():
+	return Page.query.all()
 
 def match(word, cmp):
 	return edit_distance(word, cmp) <= int(sqrt(len(word)))
@@ -125,12 +127,12 @@ def search(query):
 	out = {}
 	words = query.lower().split(' ')
 	wl = len(words)
-	for page in get_all():
+	for page in get_all_o():
 		out[page.link] = 0
 		space = page.content.lower().split(' ')
 		count = 0
 		for word in words:
-			print(word)
+
 			out[page.link] += freq(word, space)
 
 			for token in page.keywords.split(' '):
@@ -153,27 +155,32 @@ def query_d(start, stop, string):
 	pages = list(Page.query.filter(and_(Page.id >= start, Page.id < stop)))
 	# print(list(pages))
 
-	out = {}
+	out = []
 	words = string.lower().split(' ')
 	wl = len(words)
 
 
 
+	i = 0
 	for page in pages:
-		out[page.link] = 0
+		if i %20 == 0:
+			print(i)
+		i += 1
+
 		space = page.content.lower().split(' ')
 		count = 0
+		thing = 0
 		for word in words:
-			out[page.link] += freq(word, space)
+			thing += freq(word, space)
 
 			for token in page.keywords.split(' '):
 				if match(word, token):
 					count += 1
 
-		temp = count / wl
+		temp = count / wl + thing / len(space)
 		# print(count, page.keywords)
 
-		out[page.link] = {'rel': (out[page.link] / len(space)) + count, 'lean': page.lean, 'text':page.content, 'keywords':page.keywords}
+		out.append({'rel': temp, 'lean': page.lean, 'text':page.content, 'img': page.img, 'link':page.link})
 
 	return out
 
@@ -216,8 +223,55 @@ def chunks(l, n):
 #def sub_query(q, query, chunk):
 
 
-def l_query(query):
-	l = list(get_all())
-	q = mp.Queue()
-	for chunk in chunks(l, 8):
-		sub_query(q, query, chunk)
+def rel(tup):
+
+	page, words = tup
+
+
+
+	wl = len(words)
+
+	space = page.content.lower().split(' ')
+	count = 0
+	thing = 0
+	for word in words:
+		thing += freq(word, space)
+
+		for token in page.keywords.split(' '):
+			if match(word, token):
+				count += 1
+
+	temp = count / wl + thing / len(space)
+	# print(count, page.keywords)
+
+	return {'rel': temp, 'lean': page.lean, 'text': page.content, 'img': page.img, 'link': page.link}
+
+def sub_query(chunk):
+
+	out = []
+
+	for tup in chunk:
+		out.append(rel(tup))
+
+	return sorted(out, key=lambda k: k['rel'])
+
+
+
+
+def multi_query(query):
+	l = get_all_o()
+	t = []
+
+
+	p = mp.Pool(processes=mp.cpu_count())
+	words = query.lower().split(' ')
+	for i in l:
+		t.append((i, words))
+	lists = p.map(sub_query, chunks(t, mp.cpu_count()))
+	out = []
+	for i in lists:
+		out += i
+	return sorted(out, key=lambda k: k['rel'])
+
+
+
